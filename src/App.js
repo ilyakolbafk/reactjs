@@ -1,18 +1,6 @@
 import React from 'react';
 import './App.css';
 import './styles.css'
-function Element(task){
-    return (
-        <div key={task.id} className="task">
-            <p>Name: {task.name}</p>
-            <p>Description: {task.description}</p>
-            <p>Completed: {task.completed.toString()}</p>
-            <button className="big-button" onClick={() => {
-                console.log("Task "+task.id+" completed status = "+task.completed)
-            }}>Complete this task</button>
-        </div>
-    )
-}
 class MyTodoList extends React.Component {
     state = {
         tasks: [
@@ -70,7 +58,15 @@ class MyTodoList extends React.Component {
         return (
             <main>
                 <h1>To do list</h1>
-                {this.state.tasks.map(task => new Element(task))}
+                {this.state.tasks.map(task => (
+                    <div key={task.id} className="task">
+                    <p>Name: {task.name}</p>
+                    <p>Description: {task.description}</p>
+                    <p>Completed: {task.completed.toString()}</p>
+                    <button className="big-button" onClick={() => {
+                        console.log("Task "+task.id+" completed status = "+task.completed)
+                    }}>Complete this task</button>
+                </div>))}
             </main>
         )}
 }
