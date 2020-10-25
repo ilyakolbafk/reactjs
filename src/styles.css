@@ -6,12 +6,17 @@
     --colorShadeD: rgb(150, 232, 195);
     --colorShadeE: rgb(205, 255, 232);
 }
+.add-task {
+    margin-bottom: 70px;
+    width: 800px;
+}
 .task {
     margin-bottom: 70px;
-    width: 400px;
+    width: 800px;
 }
 h1 {
-
+    position: relative;
+    z-index: 99999;
     color:var(--colorShadeA);
     vertical-align: middle;
     text-decoration: none;
@@ -49,6 +54,66 @@ body {
     min-height: 100vh;
     background: var(--backgroundColor);
 }
+div {
+    text-align: center;
+}
+form {
+    background: var(--backgroundColor);
+    padding: 2px;
+    outline: none;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: inherit;
+    width: 50%;
+    position: relative;
+    display: inline-block;
+    margin-top: -100px;
+    transition: 500ms all;
+}
+input::placeholder {
+    color:var(--colorShadeA);
+}
+input:active, input:hover, input:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+input {
+    color:var(--colorShadeA);
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 0.75em;
+    transition: 500ms all;
+    background-color: var(--colorShadeE);
+    border: 1px solid var(--colorShadeA);
+    font-size: 1.25rem;
+    font-weight: 500;
+    width: 90%;
+    padding: 2px 10px;
+}
+form:hover {
+    background: var(--colorShadeE);
+    border: 2px solid var(--colorShadeA);
+    border-radius: 1em;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0;
+}
+form:hover input {
+    opacity: 1;
+    visibility: visible;
+}
+form:hover button.add-button {
+    background: var(--colorShadeD);
+    border-bottom: 2px solid var(--colorShadeA);
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0em 0em 1em 1em;
+    transform: translate(0, 0.375em);
+}
+
 button {
     position: relative;
     display: inline-block;
@@ -70,9 +135,19 @@ button.big-button {
     border-radius: 1em;
     background: var(--colorShadeE);
     transform-style: preserve-3d;
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+    transition: all 275ms cubic-bezier(0, 0, 1, 1);
+    width: 50%;
 }
-button.big-button::before {
+button.add-button {
+    padding: 1em 2em;
+    border: 2px solid var(--colorShadeA);
+    border-radius: 1em;
+    background: var(--colorShadeE);
+    transform-style: preserve-3d;
+    transition: all 500ms cubic-bezier(0, 0, 1, 1);
+    width: 100%;
+}
+button.big-button::before, button.add-button::before {
     position: absolute;
     content: '';
     width: 100%;
@@ -85,7 +160,7 @@ button.big-button::before {
     border-radius: inherit;
     box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.75em 0 0 var(--colorShadeA);
     transform: translate3d(0, 0.75em, -1em);
-    transition: all 175ms cubic-bezier(0, 0, 1, 1);
+    transition: all 275ms cubic-bezier(0, 0, 1, 1);
 }
 
 
@@ -93,17 +168,15 @@ button.big-button:hover {
     background: var(--colorShadeD);
     transform: translate(0, 0.375em);
 }
-
 button.big-button:hover::before {
     transform: translate3d(0, 0.75em, -1em);
 }
 
-button.big-button:active {
+button.big-button:active, button.add-button:active {
     transform: translate(0em, 0.75em);
 }
 
-button.big-button:active::before {
+button.big-button:active::before, button.add-button:active::before {
     transform: translate3d(0, 0, -1em);
-
     box-shadow: 0 0 0 2px var(--colorShadeB), 0 0.25em 0 0 var(--colorShadeB);
 }
