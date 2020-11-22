@@ -1,6 +1,10 @@
 import React from 'react'
 import Unit from './RenderTasks/Unit'
 import AddTask from './AddTask/AddTask'
+import styles from './ToDoList.scss'
+import classnames from 'classnames/bind'
+
+const cx = classnames.bind(styles);
 
 class ToDoList extends React.Component {
     state = {
@@ -61,7 +65,8 @@ class ToDoList extends React.Component {
                 completed: false,
                 message: "Complete this task"
             }
-        ]
+        ],
+        theme: "light"
     }
     addTask = task => {
         const updatedTasks = [task, ...this.state.tasks]
@@ -84,20 +89,36 @@ class ToDoList extends React.Component {
             }),
         })
     }
+    handleThemeChange = event => {
+        this.setState({theme: event.target.value});
+    }
 
     render() {
         return (
-            <main>
-                <h1>To do list</h1>
-                <div className="add-task">
-                    <AddTask onSubmit={this.addTask}/>
+            <main className={cx("main", {[`main-theme-${this.state.theme}`]: true})}>
+                <div className={cx("theme-switcher")}>
+                    <div>
+                        <input type="radio" name="theme" id="light" value="light"
+                               checked={this.state.theme === "light"} onChange={this.handleThemeChange}
+                               className={cx("radio", {[`radio-theme-${this.state.theme}`]: true})}/>
+                        <label className={cx("label", {[`label-theme-${this.state.theme}`]: true})}>Light Theme</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="theme" id="dark" value="dark"
+                               checked={this.state.theme === "dark"} onChange={this.handleThemeChange}
+                               className={cx("radio", {[`radio-theme-${this.state.theme}`]: true})}/>
+                        <label className={cx("label", {[`label-theme-${this.state.theme}`]: true})}>Dark Theme</label>
+                    </div>
+                </div>
+                <h1 className={cx("h1", {[`h1-theme-${this.state.theme}`]: true})}>To do list</h1>
+                <div className={cx("add-task", {[`add-task-theme-${this.state.theme}`]: true})}>
+                    <AddTask onSubmit={this.addTask} theme={this.state.theme}/>
                 </div>
                 {this.state.tasks.map(task => (
-                    <Unit
-                        key={task.id}
-                        changeCompleteStatus={() => this.changeCompleteStatus(task.id)}
-                        task={task}
-                    />))}
+                    <Unit key={task.id} changeCompleteStatus={() => this.changeCompleteStatus(task.id)}
+                          task={task} theme = {this.state.theme}/>
+                ))}
             </main>
         )
     }
