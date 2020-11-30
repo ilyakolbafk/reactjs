@@ -1,70 +1,42 @@
 :root {
-    --backgroundColor: rgb(246, 241, 209);
-    --backgroundColorDark: rgb(18, 18, 18);
-    --colorShadeA: rgb(106, 163, 137);
-    --colorShadeADark: rgb(222, 222, 222);
-    --colorShadeADark2: rgb(255, 68, 17);
-    --colorShadeB: rgb(121, 186, 156);
-    --colorShadeBDark: rgb(255, 115, 40);
-    --colorShadeC: rgb(150, 232, 195);
-    --colorShadeCDark: rgb(255, 100, 30);
-    --colorShadeD: rgb(205, 255, 232);
-    --colorShadeDDark: rgb(255, 153, 34);
+  --backgroundColor: rgb(246, 241, 209);
+  --backgroundColorDark: rgb(18, 18, 18);
+  --colorShadeA: rgb(106, 163, 137);
+  --colorShadeADark: rgb(222, 222, 222);
+  --colorShadeADark2: rgb(255, 68, 17);
+  --colorShadeB: rgb(121, 186, 156);
+  --colorShadeBDark: rgb(255, 115, 40);
+  --colorShadeC: rgb(150, 232, 195);
+  --colorShadeCDark: rgb(255, 100, 30);
+  --colorShadeD: rgb(205, 255, 232);
+  --colorShadeDDark: rgb(255, 153, 34);
+  min-height: 100%;
 }
-.label {
-    &-theme-light {
-        color: var(--colorShadeA);
-    }
-    &-theme-dark {
-        color: var(--colorShadeADark);
-    }
-}
+
 .main {
-    font-family: 'OpenSans', sans-serif;
-    line-height: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    &-theme-light {
-        background: var(--backgroundColor);
-    }
-    &-theme-dark {
-        background: var(--backgroundColorDark);
-    }
-}
-.h1 {
-    z-index: 99999;
-    text-transform: uppercase;
-    padding: 30px 135px;
-    margin: -90px 0 0;
+  font-family: 'OpenSans', sans-serif;
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 
-    &-theme-dark {
-        color: var(--colorShadeADark);
-    }
+  &-theme-light {
+    background: var(--backgroundColor);
+  }
 
-    &-theme-light {
-        color:var(--colorShadeA);
-    }
+  &-theme-dark {
+    background: var(--backgroundColorDark);
+  }
+
+  justify-content: flex-start;
 }
-.add-task {
-    margin-bottom: 70px;
-    width: 800px;
-    display: flex;
-    align-items: center;
-    flex-direction: column
-}
+
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700");
 * {
-    box-sizing: border-box;
-}
-*::before, *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.theme-switcher {
-    align-self: flex-end;
-    padding: 50px 80px 0 0;
-    display: flex;
-    flex-direction: column;
+*::before, *::after {
+  box-sizing: border-box;
 }
