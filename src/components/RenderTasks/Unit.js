@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import styles from './Unit.scss'
 import classnames from 'classnames/bind'
 import {connect} from "react-redux";
@@ -7,13 +7,14 @@ import {handleCompletedChange} from "../../actions/actions"
 const cx = classnames.bind(styles)
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchOnCompletedChange: (newCompleted) => dispatch(handleCompletedChange(newCompleted))
+    dispatchOnCompletedChange: (newCompleted, projectID) => dispatch(handleCompletedChange(newCompleted, projectID))
 })
 
 const UnitComponent = ({
                            task,
                            theme,
-                           dispatchOnCompletedChange,
+                           projectID,
+                           dispatchOnCompletedChange
                        }) => {
     const onCompletedChange = (e) => {
         e.preventDefault()
@@ -23,7 +24,7 @@ const UnitComponent = ({
             description: task.description,
             completed: !task.completed,
             message: task.completed ? "Complete this task" : "Incomplete this task"
-        })
+        }, projectID)
 
     }
     return (

@@ -1,14 +1,19 @@
 import React from "react";
 import {connect} from 'react-redux'
 import {Unit} from './Unit'
+import {Redirect} from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
-    tasks: state.task.tasks,
+    projects: state.project.projects,
     theme: state.theme.theme
 })
 
 
-const UnitsComponent = ({tasks, theme}) => {
+const UnitsComponent = ({projectID, theme, projects}) => {
+    if (projects[projectID] === undefined) {
+        return <Redirect to="/projects" />
+    }
+    let tasks = projects[projectID].tasks
     return (
         <div>
             {
@@ -17,6 +22,7 @@ const UnitsComponent = ({tasks, theme}) => {
                         key={task.id}
                         task={task}
                         theme={theme}
+                        projectID = {projectID}
                     />
                 ))
             }
