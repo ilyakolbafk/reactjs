@@ -1,20 +1,21 @@
 import React, {useState} from "react"
-import styles from './AddTask.scss'
+import styles from '../AddTask/AddTask.scss'
 import classnames from 'classnames/bind'
 import {handleAddTask} from "../../actions/actions";
 import {connect} from "react-redux";
 
 const cx = classnames.bind(styles)
 const mapStateToProps = (state) => ({
-    tasks: state.task.tasks,
-    theme: state.theme.theme
+    projects: state.project.projects,
+    theme: state.theme.theme,
+    tasks: state.task.tasks
 })
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchOnAddTask: (taskInfo) => dispatch(handleAddTask(taskInfo))
 });
 
-const AddTaskComponent = ({tasks, dispatchOnAddTask, theme}) => {
+const AddTaskComponent = ({projects, theme, projectID}) => {
     const [task, setTask] = useState({
         id: 0,
         name: '',
@@ -41,12 +42,11 @@ const AddTaskComponent = ({tasks, dispatchOnAddTask, theme}) => {
     const onSubmit = () => {
         setTask(previousTask => ({
             ...previousTask,
-            id: tasks.length + 1,
+            id: projects[projectID].tasks.length + 1,
             completed: false,
             message: "Complete this task"
         }))
-        console.log(task)
-        dispatchOnAddTask(task)
+        projects[projectID].tasks = [...projects[projectID].tasks, task]
     }
     return (
         <div className={cx("add-task", {[`add-task-theme-${theme}`]: true})}>
